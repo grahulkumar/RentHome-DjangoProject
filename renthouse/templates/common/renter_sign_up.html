@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block sign %}
+
+<div class="d-flex justify-content-center align-items-center">
+  <div class="w-75">
+    <h1>Create renter account</h1>
+    <form method="POST">
+      {% csrf_token %}
+      <!--name input-->
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" />
+      </div>
+
+      <!--email input-->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          aria-describedby="emailHelp"
+        />
+      </div>
+
+      <!--password input-->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          id="password"
+        />
+      </div>
+
+      <!--confirm password input-->
+      <div class="mb-3">
+        <label for="cpassword" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="cpassword"
+          id="cpassword"
+        />
+      </div>
+
+      <!--submit button-->
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </div>
+    </form>
+
+    <div>
+      <span>Already have an account?</span>
+      <a class="text-danger" href="/sign-in"> Sign In</a>
+    </div>
+  </div>
+</div>
+
+{% endblock sign %}

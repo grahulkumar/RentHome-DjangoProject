@@ -1,0 +1,14 @@
+{% extends "base.html" %} 
+
+<!--custom title-->
+{% block title %} Home | renter {% endblock title %}
+
+<!--Renter's body-->
+{% block body %}
+
+{% include "renter/dashboard.html" %}
+
+{% include "renter/rented_home_details.html" %}
+
+
+{% endblock body %}

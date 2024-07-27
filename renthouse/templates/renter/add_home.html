@@ -1,0 +1,60 @@
+{% extends "renter/renter_home.html" %}
+
+{% block title %} Add Home {% endblock title %}
+
+{% block body %}
+<div class="container py-4">
+  <h1>Add home </h1>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+    <div class="mb-3">
+       <label for="image" class="form-label">Upload</label>
+       <input type="file" class="form-control" id="image" name="image">
+    </div>
+    <div class="mb-3">
+        <label for="inputAddress" class="form-label">Address</label>
+        <input type="text" class="form-control" id="inputAddress" name="add" placeholder="1234 Main St">
+      </div>
+      <div class="mb-3">
+        <label for="inputAddress2" class="form-label">Address 2</label>
+        <input type="text" class="form-control" id="inputAddress2" name="add1" placeholder="Apartment, studio, or floor">
+      </div>
+      <div class="mb-3">
+        <label for="inputCity" class="form-label">City</label>
+        <input type="text" class="form-control" id="inputCity" name="city">
+      </div>
+      <div class="mb-3">
+        <label for="inputState" class="form-label">State</label>
+        <select id="inputState" class="form-select" name="state">
+          <option selected>select</option>
+          <option value="goa">Goa</option>
+          <option value="delhi">Delhi</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="inputPincode" class="form-label">Pin Code</label>
+        <input type="number" class="form-control" id="inputPincode" name="pincode">
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price in Rupees</label>
+        <input type="number" class="form-control" id="price" name="price">
+      </div>
+      <div class="mb-3">
+        <label for="about" class="form-label">Summary about house</label>
+        <input type="text" class="form-control" id="about" name="about">
+      </div>
+      <div class="mb-3">
+        <label for="condition" class="form-label">Condition of home</label>
+        <select id="condition" class="form-select" name="condition">
+          <option selected>select condition</option>
+          <option value="Excellent">Excellent</option>
+          <option value="Good">Good</option>
+          <option value="Very Good">Very Good</option>
+        </select>
+      </div>
+    <button type="submit" class="btn btn-primary mt-4 px-4">Add House</button>
+  </form>
+
+</div>
+
+{% endblock body %}

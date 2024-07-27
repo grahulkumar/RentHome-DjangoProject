@@ -1,0 +1,28 @@
+<div class="m-4 p-4 border border-success shadow rounded-4">
+    <h1>Rented Home details</h1>
+    <hr/>
+    <div class="p-2">
+        <div class="row">
+            {% for home in homedetails %}
+            <div class="col-12 col-md-6">
+              <div class="row shadow rounded-4 p-2 my-2 my-md-1 mx-0 mx-md-2">
+                <div class="col-6 p-2">
+                  <img src="{{ home.image.url }}" class="img-fluid rounded-2" alt="simlw">
+                </div>
+                <div class="col-6 p-2 d-flex align-items-center justify-content-evenly flex-column">
+                    <div><span class="fw-bold">Address:</span> <span>{{home.add}}</span> <span>{{home.add1}}</span></div>
+                    <div><span class="fw-bold">Loaction: </span><span>{{home.city}}</span>,<span>{{home.state}}</span></div>
+                    <div><span class="fw-bold">Pincode: </span>{{home.pincode}}</div>
+                    <div><span class="fw-bold">Condition: </span><span class="text-success">{{home.condition}}</span></div>
+                    <div><span class="fw-bold">Price: </span><span class="text-danger">{{home.price}} Rs</span></div>
+                </div>
+                <div class="col p-2">
+                  <div><span class="fw-bold">Summary: </span><span class="text-info">{{home.about}}</span></div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+</div>

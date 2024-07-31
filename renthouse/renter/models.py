@@ -10,6 +10,7 @@ class HomeDetails(models.Model):
     price=models.FloatField()
     about=models.CharField(max_length=200)
     condition = models.CharField(max_length=50)
+    status = models.CharField(max_length=50,default="not rented")
     
     def __str__(self):
         return self.add

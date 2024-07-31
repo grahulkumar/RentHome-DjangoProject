@@ -3,8 +3,9 @@
 {% block title %} Add Home {% endblock title %}
 
 {% block body %}
-<div class="container py-4">
+<div class="container-md p-4">
   <h1>Add home </h1>
+  <hr/>
 <form method="POST" enctype="multipart/form-data">
   {% csrf_token %}
     <div class="mb-3">
@@ -36,14 +37,14 @@
         <input type="number" class="form-control" id="inputPincode" name="pincode">
       </div>
       <div class="mb-3">
-        <label for="price" class="form-label">Price in Rupees</label>
+        <label for="price" class="form-label">Per night price</label>
         <input type="number" class="form-control" id="price" name="price">
       </div>
       <div class="mb-3">
         <label for="about" class="form-label">Summary about house</label>
         <input type="text" class="form-control" id="about" name="about">
       </div>
-      <div class="mb-3">
+      <div class="mb-4">
         <label for="condition" class="form-label">Condition of home</label>
         <select id="condition" class="form-select" name="condition">
           <option selected>select condition</option>
@@ -52,7 +53,9 @@
           <option value="Very Good">Very Good</option>
         </select>
       </div>
-    <button type="submit" class="btn btn-primary mt-4 px-4">Add House</button>
+      <div class="mb-3 text-center">
+        <button type="submit" class="btn btn-primary w-50">Add House</button>
+      </div>
   </form>
 
 </div>

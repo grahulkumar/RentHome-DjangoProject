@@ -9,22 +9,25 @@ def user_home(request):
 #sign_in page
 def user_signin(request):
     if(request.method == 'POST'):       
-        email=request.POST['email']
-        password=request.POST['password']
+        email=request.POST.get('email')
+        password=request.POST.get('password')
+        
         if(email=="" or password==""):
             print("all fields required")
         else:
             user_auth=authenticate(request,email=email,password=password)
             if(user_auth is None):
                 print("user does not exist")
+                return render(request, 'common/sign_in.html')
             else:
                 login(request,user_auth)
-                if(user_auth.role=="Renter"):
-                    print("user login successfully")
-                    return redirect("renter-home")
+                if hasattr(user_auth, 'role'):  # Ensure role attribute exists
+                   if user_auth.role == "Renter":
+                        return redirect("renter-home")
+                   else:
+                        return redirect("home")
                 else:
-                    print("user login successfully")
-                    return redirect("home")
+                    return redirect("sign-in")
     return render(request,'common/sign_in.html')
 
 #user sign_up page

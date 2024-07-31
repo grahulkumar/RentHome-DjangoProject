@@ -7,7 +7,7 @@ class HomeDetails(models.Model):
     city=models.CharField(max_length=100)
     state=models.CharField(max_length=100)
     pincode=models.IntegerField()
-    price=models.FloatField()
+    price=models.DecimalField(max_digits=10, decimal_places=2)
     about=models.CharField(max_length=200)
     condition = models.CharField(max_length=50)
     status = models.CharField(max_length=50,default="not rented")

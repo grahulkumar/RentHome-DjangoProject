@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from .models import HomeDetails
+from user.models import CustomUser
 
 #renter's home page
 def renter_home(request):
@@ -7,8 +8,9 @@ def renter_home(request):
     if not request.user.is_authenticated:
         return redirect("home")
     else:
-        get_image=HomeDetails.objects.all()
-        data['homedetails']=get_image
+        user_id=request.user.id
+        get_data=HomeDetails.objects.filter(rid_id=user_id)
+        data['homedetails']=get_data
         
     return render(request,'renter/renter_home.html',context=data)
 
@@ -28,7 +30,10 @@ def add_home(request):
         if not all([add, add1, state, city, pincode, price,about,condition,image_file]):
             print("All fields are required")
         else:
-            addHome=HomeDetails.objects.create(image=image_file,add=add,add1=add1,state=state,city=city,pincode=pincode,about=about,condition=condition,price=price)
+            #get renter id
+            user=request.get.id
+            user_id=CustomUser.objects.get(id=user)
+            addHome=HomeDetails.objects.create(image=image_file,add=add,add1=add1,state=state,city=city,pincode=pincode,about=about,condition=condition,price=price,rid_id=user_id)
             addHome.save()
             print("renter saved successfully")
             return redirect('renter-home')

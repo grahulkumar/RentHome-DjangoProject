@@ -28,10 +28,12 @@
                       <a href="edit-home/{{home.id}}" class="fw-bold fs-4"><i class="bi bi-pencil-square"></i></a>
                     </div>
                   </div>
-                  
                 </div>
             </div>
             {% endfor %}
+            {% if not homedetails %}
+            <p class="text-primary text-center fs-1 fw-semibold"> No product added yet</p>
+            {% endif %}
         </div>
     </div>
     

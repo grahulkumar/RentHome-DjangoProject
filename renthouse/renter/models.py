@@ -1,4 +1,5 @@
 from django.db import models
+from user.models import CustomUser
 
 class HomeDetails(models.Model):
     image=models.ImageField(upload_to="house_images/")
@@ -11,6 +12,7 @@ class HomeDetails(models.Model):
     about=models.CharField(max_length=200)
     condition = models.CharField(max_length=50)
     status = models.CharField(max_length=50,default="not rented")
+    rid= models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
     
     def __str__(self):
         return self.add

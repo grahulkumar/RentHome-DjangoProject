@@ -5,26 +5,27 @@
     <form method="POST">
         {% csrf_token %}
             <div class="mb-3">
-             <label for="people" class="form-label">How many people are you going to share a room with?</label>
+             <label for="people" class="form-label fw-semibold">How many people are you going to share a room with?</label>
              <input type="number" class="form-control" id="people" name="people" required>
             </div>
             <div class="mb-3">
-              <label for="price" class="form-label">Select you price range(per night)</label>
+              <label for="price" class="form-label fw-semibold">Select you price range(per night)</label>
                <div class="input-group gap-2" id="price">
                 <input type="number" class="form-control" name="fromprice" placeholder="From" required>
                 <input type="number" class="form-control" name="toprice" placeholder="To" required>              
                </div>
             </div>
-            <div>
-              <p class="mb-1">Location of home</p>
-              <hr class="mt-0"/>
-            </div>
-            <div class="mb-2">
-              <input type="text" class="form-control" id="inputCity" name="city" placeholder="enter city name">
+            <div class="mb-3">
+              <label for="inputCity" class="form-label">City</label>
+              <input type="text" class="form-control" id="inputCity" name="city">
             </div>
             <div class="mb-3">
-              <label for="Pincode" class="form-label">or</label>
-              <input type="number" class="form-control" placeholder="enter pincode" id="Pincode" name="pincode">
+              <label for="inputState" class="form-label">State</label>
+              <select id="inputState" class="form-select" name="state">
+                <option selected>select state</option>
+                <option value="Goa">Goa</option>
+                <option value="Delhi">Delhi</option>
+              </select>
             </div>
             <div class="mb-3 text-center">
               <button type="submit" class="btn btn-primary w-50">Find home</button>

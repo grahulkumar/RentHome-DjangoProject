@@ -9,7 +9,7 @@ urlpatterns = [
     path('sign-up/',views.user_signup , name="sign-up"),
     path('renter-sign-up/',views.renter_signup, name="renter-sign-up"),
     path('logout/',views.user_logout, name="logout"),
-    
-    path('profile/',views.profile, name="profile")
+    path('profile/',views.profile, name="profile"),
+    path('result/',views.home_result, name="result"),
     
 ]

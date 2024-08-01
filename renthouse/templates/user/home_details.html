@@ -1,9 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} Home details {% endblock title %}
+
+{% block body %}
+
 <div class="m-2 m-md-4 p-2 p-md-4 shadow-sm rounded-4">
     <h1>Home details</h1>
     <hr class="mt-0" />
     <div class="p-0">
         <div class="row">
-            {% for home in homedetails %}
+            {% for home in homes %}
             <div class="col-12 col-md-6">
                 <div class="card my-2 my-md-1 mx-0 mx-md-2">
                   <img src="{{ home.image.url }}" class="card-img-top" alt="...">
@@ -20,10 +26,12 @@
                 </div>
             </div>
             {% endfor %}
-            {% if not homedetails %}
-            <p class="text-primary text-center fs-1 fw-semibold"> No home added yet</p>
+            {% if not homes %}
+            <p class="text-primary text-center fs-1 fw-semibold"> No home available right now</p>
             {% endif %}
         </div>
     </div>
-    
 </div>
+
+
+{% endblock body %}

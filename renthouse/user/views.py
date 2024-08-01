@@ -1,10 +1,35 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login, logout
 from .models import CustomUser
+from renter.models import HomeDetails
+from django.urls import reverse
 
 #user's home page
 def user_home(request):
+    if(request.method == 'POST'):
+        city=request.POST['city']
+        state = request.POST['state']
+        fromprice=request.POST['fromprice']
+        toprice=request.POST['toprice']
+        people=request.POST['people']
+        url = reverse('result') + f'?people={people}&fromprice={fromprice}&toprice={toprice}&city={city}&state={state}'
+        return redirect(url)
     return render(request,'user/user_home.html')
+
+#filtering home results
+def home_result(request):
+    data={}
+    # Retrieve data from find home form
+    city = request.GET.get('city')
+    state = request.GET.get('state')
+    fromprice = request.GET.get('fromprice')
+    toprice = request.GET.get('toprice')
+    people = request.GET.get('people')
+    homes=HomeDetails.objects.filter(city__icontains=city,state=state,people__gte=people,price__range=(fromprice, toprice)) 
+    #__gte to get minimum value and __range to find between values
+
+    data['homes']=homes
+    return render(request,'user/home_details.html',context=data)
 
 #sign_in page
 def user_signin(request):
@@ -74,6 +99,3 @@ def user_logout(request):
 def profile(request):
     return render(request,'common/profile.html')
 
-#find home
-def find_home(request):
-    return render(request,'user/find_home.html')

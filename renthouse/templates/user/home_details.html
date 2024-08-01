@@ -4,32 +4,21 @@
 
 {% block body %}
 
-<div class="m-2 m-md-4 p-2 p-md-4 shadow-sm rounded-4">
-    <h1>Home details</h1>
+<div class="mt-4 p-2 p-md-3 p-lg-4 shadow-sm rounded-2 border mx-2 mx-md-auto mx-lg-auto" style="max-width:768px;">
+    <p class="fs-1 fw-semibold mb-0">Home details</p>
     <hr class="mt-0" />
-    <div class="p-0">
-        <div class="row">
-            {% for home in homes %}
-            <div class="col-12 col-md-6">
-                <div class="card my-2 my-md-1 mx-0 mx-md-2">
-                  <img src="{{ home.image.url }}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <p class="card-text"><i class="bi bi-house-door"></i> {{home.add}}, {{home.add1}}, {{home.pincode}}</p>
-                    <p class="card-text"><i class="bi bi-geo-alt"></i>{{home.city}},{{home.state}}</p>
-                    <p class="card-text"><span class="fw-bold">Condition: </span><span class="text-success">{{home.condition}}</span></p>
-                    <p class="card-text"><span class="fw-bold">Per night: </span><i class="bi bi-currency-rupee"></i><span class="text-success fw-bold">{{home.price}}</span></p>
-                    <div class="d-flex flex-row justify-content-between">
-                      <p class="card-text"><span class="fw-bold">Status: </span><span class="text-info fw-semibold">{{home.status}}</span></p>
-                      <a href="edit-home/{{home.id}}" class="fw-bold fs-4"><i class="bi bi-pencil-square"></i></a>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            {% endfor %}
-            {% if not homes %}
-            <p class="text-primary text-center fs-1 fw-semibold"> No home available right now</p>
-            {% endif %}
-        </div>
+    <div>
+        <img src="{{ home.image.url }}" class="img-thumbnail p-0" alt="...">
+    </div>
+    <div class="card border-0 my-2 my-md-1 px-2">
+        <p class="card-text fw-semibold"><span class="fw-bold">About: </span> {{home.about}}</p>
+          <p class="card-text fw-semibold"><span class="fw-bold">Address: </span> {{home.add}}, {{home.add1}}, {{home.pincode}}</p>
+          <p class="fw-semibold"><span class="fw-bold">Location: </span>{{home.city}},{{home.state}}</p>
+          <p class="fw-semibold"><span class="fw-bold">Condition: </span><span class="text-success fw-semibold">{{home.condition}}</span></p>
+          <div>
+            <p><span class="fw-bold">Per night: </span><i class="bi bi-currency-rupee"></i><span class="text-danger fw-bold">{{home.price}}</span></p>
+          </div>
+          <a href="/rent-now/{{home.id}}" class="btn btn-success mx-4">Rent now</a>
     </div>
 </div>
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import authenticate,login, logout
 from .models import CustomUser
 from renter.models import HomeDetails
@@ -27,8 +27,18 @@ def home_result(request):
     people = request.GET.get('people')
     homes=HomeDetails.objects.filter(city__icontains=city,state=state,people__gte=people,price__range=(fromprice, toprice)) 
     #__gte to get minimum value and __range to find between values
-
+    
+    homes_count=homes.count() #get homes count
+    data['count']=homes_count
+    
     data['homes']=homes
+    return render(request,'user/results.html',context=data)
+
+#home-details
+def home_details(request,id):
+    data={}
+    home=get_object_or_404(HomeDetails,id=id)
+    data['home']=home
     return render(request,'user/home_details.html',context=data)
 
 #sign_in page

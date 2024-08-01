@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %} Results {% endblock title %}
+
+{% block body %}
+
+<div class="m-2 m-md-3 m-lg-4 p-2 p-md-3 p-lg-4 shadow-sm rounded-2 border">
+    <div class="d-flex flex-columns justify-content-between">
+      <p class="fs-1 fw-semibold">Results</p>
+      <select class="form-select w-25 h-75 my-auto" name="sortby">
+        <option selected>sort by</option>
+        <option value="low">price:low</option>
+        <option value="high">price:high</option>
+      </select>
+    </div>
+    <hr class="mt-0" />
+    <div class="p-0 pb-4">
+        <div class="text-center text-success fs-2 mb-2">
+          {{count}} results found !!
+        </div>
+        <div class="row">
+            {% for home in homes %}
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card my-2 my-md-1 mx-0 mx-md-1">
+                  <img src="{{ home.image.url }}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="fw-semibold"><i class="bi bi-house-door"></i> {{home.add}}, {{home.add1}}, {{home.pincode}}</p>
+                    <p class="fw-semibold"><i class="bi bi-geo-alt"></i>{{home.city}},{{home.state}}</p>
+                    <div class="row">
+                      <p class="col-6"><span class="fw-bold">Condition: </span><span class="text-success fw-semibold">{{home.condition}}</span></p>
+                      <p class="col-6 text-end"><span class="fw-bold">Per night: </span><i class="bi bi-currency-rupee"></i><span class="text-danger fw-bold">{{home.price}}</span></p>
+                    </div>
+                    <div class="row pe-2">
+                      <p class="col-8"><span class="fw-bold">Status: </span><span class="text-info fw-semibold">{{home.status}} yet</span></p>
+                      <a href="/home-details/{{home.id}}" class="btn btn-primary col-4 ">view details</a>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% if not homes %}
+            <p class="text-primary text-center fs-1 fw-semibold"> No home available right now</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}

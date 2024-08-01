@@ -23,17 +23,18 @@ def add_home(request):
         city=request.POST['city']
         pincode=request.POST['pincode']
         price=request.POST['price']
+        people=request.POST['people']
         about=request.POST['about']
         condition=request.POST['condition']
         image_file = request.FILES['image']
         # Validate required fields
-        if not all([add, add1, state, city, pincode, price,about,condition,image_file]):
+        if not all([add, add1, state, city, pincode, price, people,about,condition,image_file]):
             print("All fields are required")
         else:
             #get renter id
             user=request.get.id
             user_id=CustomUser.objects.get(id=user)
-            addHome=HomeDetails.objects.create(image=image_file,add=add,add1=add1,state=state,city=city,pincode=pincode,about=about,condition=condition,price=price,rid_id=user_id)
+            addHome=HomeDetails.objects.create(image=image_file,add=add,add1=add1,state=state,city=city,pincode=pincode,about=about,condition=condition,price=price, people=people,rid_id=user_id)
             addHome.save()
             print("renter saved successfully")
             return redirect('renter-home')
@@ -51,6 +52,7 @@ def edit_home(request,pk):
         city=request.POST['city']
         pincode=request.POST['pincode']
         price=request.POST['price']
+        people=request.POST['people']
         about=request.POST['about']
         condition=request.POST['condition']
         #update image
@@ -59,7 +61,7 @@ def edit_home(request,pk):
             homedetails.image = image_file 
         
         # Validate required fields
-        if not all([add, add1, state, city, pincode, price,about,condition]):
+        if not all([add, add1, state, city, pincode, price, people,about,condition]):
             print("All fields are required")
         else:
           # Update the home details
@@ -69,6 +71,7 @@ def edit_home(request,pk):
             homedetails.city = city
             homedetails.pincode = pincode
             homedetails.price = price
+            homedetails.people = people
             homedetails.about = about
             homedetails.condition = condition
             homedetails.save()  # Save the updated home details            print("house updated successfully")

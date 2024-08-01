@@ -1,0 +1,34 @@
+<div class="mx-2 my-4 p-3 mx-md-auto shadow rounded-4" style="max-width: 768px;">
+  <h1>Find Home</h1>
+  <hr class="mt-0"/>
+  <div>
+    <form method="POST">
+        {% csrf_token %}
+            <div class="mb-3">
+             <label for="people" class="form-label">How many people are you going to share a room with?</label>
+             <input type="number" class="form-control" id="people" name="people" required>
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Select you price range(per night)</label>
+               <div class="input-group gap-2" id="price">
+                <input type="number" class="form-control" name="fromprice" placeholder="From" required>
+                <input type="number" class="form-control" name="toprice" placeholder="To" required>              
+               </div>
+            </div>
+            <div>
+              <p class="mb-1">Location of home</p>
+              <hr class="mt-0"/>
+            </div>
+            <div class="mb-2">
+              <input type="text" class="form-control" id="inputCity" name="city" placeholder="enter city name">
+            </div>
+            <div class="mb-3">
+              <label for="Pincode" class="form-label">or</label>
+              <input type="number" class="form-control" placeholder="enter pincode" id="Pincode" name="pincode">
+            </div>
+            <div class="mb-3 text-center">
+              <button type="submit" class="btn btn-primary w-50">Find home</button>
+            </div>
+        </form>      
+  </div>
+</div>

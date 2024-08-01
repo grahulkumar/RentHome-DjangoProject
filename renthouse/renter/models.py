@@ -12,6 +12,7 @@ class HomeDetails(models.Model):
     about=models.CharField(max_length=200)
     condition = models.CharField(max_length=50)
     status = models.CharField(max_length=50,default="not rented")
+    people=models.IntegerField(default=1)
     rid= models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
     
     def __str__(self):

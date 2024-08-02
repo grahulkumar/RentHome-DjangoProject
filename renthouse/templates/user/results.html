@@ -12,7 +12,7 @@
     <p class="fs-1 fw-semibold">Results</p>
     <form action="POST" class="my-auto">
       <select class="form-select" name="sortby">
-        <option selected>sort by</option>
+        <option value="" disabled selected>sort by</option>
         <option value="low">price:low</option>
         <option value="high">price:high</option>
       </select>
@@ -23,6 +23,10 @@
     <div class="text-center text-danger fs-2 mb-2 fw-semibold">
       {{count}} results found !!
     </div>
+    <!--if home not found-->
+    <p class="text-primary text-center fs-1 fw-semibold">
+      {{msg}}
+    </p>
     <div class="row">
       {% for home in homes %}
       <div class="col-12 col-md-6 col-lg-3">
@@ -48,7 +52,7 @@
             </div>
             <div class="d-flex justify-content-between">
               <p>
-                <span class="fw-bold">Price: </span
+                <span class="fw-bold">{{per}} Price: </span
                 ><i class="bi bi-currency-rupee"></i
                 ><span class="text-danger fw-bold"
                   >{{ home.price|multi:days }}</span
@@ -64,13 +68,6 @@
         </div>
       </div>
       {% endfor %} 
-      
-      <!--if home not found-->
-      {% if not homes %}
-      <p class="text-primary text-center fs-1 fw-semibold">
-        No home available at your location yet !!
-      </p>
-      {% endif %}
     </div>
   </div>
 </div>

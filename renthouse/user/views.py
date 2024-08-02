@@ -12,9 +12,8 @@ def user_home(request):
         state = request.POST['state']
         fromprice=request.POST['fromprice']
         toprice=request.POST['toprice']
-        people=request.POST['people']
         days = request.POST['days']
-        url = reverse('result') + f'?people={people}&days={days}&fromprice={fromprice}&toprice={toprice}&city={city}&state={state}'
+        url = reverse('result') + f'?days={days}&fromprice={fromprice}&toprice={toprice}&city={city}&state={state}'
         return redirect(url)
     return render(request,'user/user_home.html')
 
@@ -22,7 +21,6 @@ def user_home(request):
 def home_result(request):
     data={}
     # Retrieve data from find home form
-    people = request.GET.get('people')
     days = request.GET.get('days')
     fromprice = request.GET.get('fromprice')
     toprice = request.GET.get('toprice')
@@ -30,8 +28,8 @@ def home_result(request):
     state = request.GET.get('state')
     
     #filter data
-    home_data=HomeDetails.objects.filter(city__icontains=city,state=state,people__gte=people,price__range=(fromprice, toprice)) 
-    #__gte to get minimum value and __range to find between values
+    home_data=HomeDetails.objects.filter(city__icontains=city,state=state,price__range=(fromprice, toprice)) 
+    #__range to find between values
     #__icontain ignore case to get value
     
     home_count=home_data.count() #get result count from database

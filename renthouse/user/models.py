@@ -14,3 +14,11 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+    
+#renting home model
+class RentingHomeDetails(models.Model):
+    startdate=models.DateField(auto_now=False, auto_now_add=False)
+    enddate=models.DateField(auto_now=False, auto_now_add=False)
+    starttime=models.TimeField(auto_now=False, auto_now_add=False)
+    endtime=models.TimeField(auto_now=False, auto_now_add=False)
+    u=models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)

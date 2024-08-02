@@ -36,11 +36,17 @@
             <p class="fw-semibold">
               <i class="bi bi-geo-alt"></i>{{home.city}},{{home.state}}
             </p>
-            <p>
-              <span class="fw-bold">Condition: </span
-              ><span class="text-success fw-semibold">{{home.condition}}</span>
-            </p>
-
+            
+            <div class="d-flex justify-content-between">
+              <p>
+                <span class="fw-bold">Condition: </span
+                ><span class="text-success fw-semibold">{{home.condition}}</span>
+              </p>
+              <p class="me-2">
+                <span class="fw-bold">Max people: </span
+                ><span class="text-info fw-semibold">{{home.people}}</span>
+              </p>
+            </div>
             <div class="d-flex justify-content-between">
               <p>
                 <span class="fw-bold">Price: </span
@@ -58,7 +64,10 @@
           </div>
         </div>
       </div>
-      {% endfor %} {% if not homes %}
+      {% endfor %} 
+      
+      <!--if home not found-->
+      {% if not homes %}
       <p class="text-primary text-center fs-1 fw-semibold">
         No home available at your location yet !!
       </p>

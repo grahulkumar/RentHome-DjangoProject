@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate,login, logout
 from .models import CustomUser
 from renter.models import HomeDetails
 from django.urls import reverse
+from datetime import datetime
+
 # from django.db.models import Q
 
 #user's home page
@@ -100,6 +102,16 @@ def rent_summary(request,id,d):
         data['per']="One Night"
     data['days']=d
     data['home']=home
+    
+    #get current date
+    data['curdate']=datetime.now()
+    
+    #get form data
+    if(request.method == 'POST'):
+        date=request.POST['date']
+        time = request.POST['time']
+        
+        return redirect('home')
     return render(request,'user/rent_summary.html',context=data)
 
 #sign_in page

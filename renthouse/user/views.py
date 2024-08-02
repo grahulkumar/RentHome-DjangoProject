@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate,login, logout
 from .models import CustomUser
 from renter.models import HomeDetails
 from django.urls import reverse
+from django.db.models import Q
 
 #user's home page
 def user_home(request):
@@ -12,7 +13,8 @@ def user_home(request):
         fromprice=request.POST['fromprice']
         toprice=request.POST['toprice']
         people=request.POST['people']
-        url = reverse('result') + f'?people={people}&fromprice={fromprice}&toprice={toprice}&city={city}&state={state}'
+        days = request.POST['days']
+        url = reverse('result') + f'?people={people}&days={days}&fromprice={fromprice}&toprice={toprice}&city={city}&state={state}'
         return redirect(url)
     return render(request,'user/user_home.html')
 
@@ -20,24 +22,41 @@ def user_home(request):
 def home_result(request):
     data={}
     # Retrieve data from find home form
-    city = request.GET.get('city')
-    state = request.GET.get('state')
+    people = request.GET.get('people')
+    days = request.GET.get('days')
     fromprice = request.GET.get('fromprice')
     toprice = request.GET.get('toprice')
-    people = request.GET.get('people')
-    homes=HomeDetails.objects.filter(city__icontains=city,state=state,people__gte=people,price__range=(fromprice, toprice)) 
+    city = request.GET.get('city')
+    state = request.GET.get('state')
+    
+    #filter data
+    home_data=HomeDetails.objects.filter(Q(city__icontains=city) | Q(state=state),people__gte=people,price__range=(fromprice, toprice)) 
     #__gte to get minimum value and __range to find between values
+    #__icontain ignore case to get value
     
-    homes_count=homes.count() #get homes count
-    data['count']=homes_count
-    
-    data['homes']=homes
+    #sorting results
+    sort_by=request.POST.get('sortby','low')
+    if sort_by == "high":
+        home=home_data.order_by('-price')  #'-' for descending order
+    else:
+        home=home_data.order_by('price') #ascending order
+        
+    home_count=home_data.count() #get result count from database
+    data['count']=home_count
+    data['days']=days
+    data['homes']=home
     return render(request,'user/results.html',context=data)
 
 #home-details
-def home_details(request,id):
+def home_details(request,id,d):
     data={}
+    #home details from result page
     home=get_object_or_404(HomeDetails,id=id)
+    
+    #get renter name
+    renter_name=get_object_or_404(CustomUser,id=home.rid_id)
+    data['name']=renter_name.name
+    data['days']=d
     data['home']=home
     return render(request,'user/home_details.html',context=data)
 

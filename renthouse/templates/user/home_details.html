@@ -1,26 +1,46 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block title %} Home details {% endblock title %}
+{% block title %} Home details {% endblock title %} 
 
 {% block body %}
 
-<div class="mt-4 p-2 p-md-3 p-lg-4 shadow-sm rounded-2 border mx-2 mx-md-auto mx-lg-auto" style="max-width:768px;">
-    <p class="fs-1 fw-semibold mb-0">Home details</p>
-    <hr class="mt-0" />
-    <div>
-        <img src="{{ home.image.url }}" class="img-thumbnail p-0" alt="...">
-    </div>
-    <div class="card border-0 my-2 my-md-1 px-2">
-        <p class="card-text fw-semibold"><span class="fw-bold">About: </span> {{home.about}}</p>
-          <p class="card-text fw-semibold"><span class="fw-bold">Address: </span> {{home.add}}, {{home.add1}}, {{home.pincode}}</p>
-          <p class="fw-semibold"><span class="fw-bold">Location: </span>{{home.city}},{{home.state}}</p>
-          <p class="fw-semibold"><span class="fw-bold">Condition: </span><span class="text-success fw-semibold">{{home.condition}}</span></p>
-          <div>
-            <p><span class="fw-bold">Per night: </span><i class="bi bi-currency-rupee"></i><span class="text-danger fw-bold">{{home.price}}</span></p>
-          </div>
-          <a href="/rent-now/{{home.id}}" class="btn btn-success mx-4">Rent now</a>
-    </div>
-</div>
+<!--load custom filters-->
+{% load math_filters %}
 
+<div
+  class="mt-4 p-2 p-md-3 p-lg-4 shadow-sm rounded-2 border mx-2 mx-md-auto mx-lg-auto"
+  style="max-width: 768px">
+  <p class="fs-1 fw-semibold mb-0">Home details</p>
+  <hr class="mt-0" />
+  <div>
+    <img src="{{ home.image.url }}" class="img-thumbnail p-0" alt="..." />
+  </div>
+  <div class="card border-0 my-2 my-md-1 px-2">
+    <p class="card-text fw-semibold">
+      <span class="fw-bold">About: </span> {{home.about}}
+    </p>
+    <p class="card-text fw-semibold">
+      <span class="fw-bold">Address: </span> {{home.add}}, {{home.add1}},
+      {{home.pincode}}
+    </p>
+    <p class="fw-semibold">
+      <span class="fw-bold">Location: </span>{{home.city}},{{home.state}}
+    </p>
+    <p class="fw-semibold">
+      <span class="fw-bold">Condition: </span
+      ><span class="text-success fw-semibold">{{home.condition}}</span>
+    </p>
+    <p class="fw-semibold">
+      <span class="fw-bold">Owner: </span
+      ><span class="text-success fw-semibold">{{name}}</span>
+    </p>
+    <p>
+      <span class="fw-bold">Price: </span
+      ><i class="bi bi-currency-rupee"></i
+      ><span class="text-danger fw-bold">{{ home.price|multi:days }}</span>
+    </p>
+    <a href="/checkout/{{home.id}}" class="btn btn-success w-50 mx-auto fw-semibold">Checkout</a>
+  </div>
+</div>
 
 {% endblock body %}

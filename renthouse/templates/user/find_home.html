@@ -1,35 +1,65 @@
-<div class="mx-2 my-4 p-3 mx-md-auto shadow rounded-4" style="max-width: 768px;">
+<div class="mx-2 my-4 p-3 mx-md-auto shadow rounded-4" style="max-width: 768px">
   <h1>Find Home</h1>
-  <hr class="mt-0"/>
+  <hr class="mt-0" />
   <div>
     <form method="POST">
-        {% csrf_token %}
-            <div class="mb-3">
-             <label for="people" class="form-label fw-semibold">How many people are you going to share a room with?</label>
-             <input type="number" class="form-control" id="people" name="people" required>
-            </div>
-            <div class="mb-3">
-              <label for="price" class="form-label fw-semibold">Select you price range(per night)</label>
-               <div class="input-group gap-2" id="price">
-                <input type="number" class="form-control" name="fromprice" placeholder="From" required>
-                <input type="number" class="form-control" name="toprice" placeholder="To" required>              
-               </div>
-            </div>
-            <div class="mb-3">
-              <label for="inputCity" class="form-label">City</label>
-              <input type="text" class="form-control" id="inputCity" name="city">
-            </div>
-            <div class="mb-3">
-              <label for="inputState" class="form-label">State</label>
-              <select id="inputState" class="form-select" name="state">
-                <option selected>select state</option>
-                <option value="Goa">Goa</option>
-                <option value="Delhi">Delhi</option>
-              </select>
-            </div>
-            <div class="mb-3 text-center">
-              <button type="submit" class="btn btn-primary w-50">Find home</button>
-            </div>
-        </form>      
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="people" class="form-label fw-semibold"
+          >How many people are you going to share a room with?</label
+        >
+        <input
+          type="number"
+          class="form-control"
+          id="people"
+          name="people"
+          required />
+      </div>
+      <div class="mb-3">
+        <label for="days" class="form-label fw-semibold"
+          >How many days are you renting for?</label
+        >
+        <input
+          type="number"
+          class="form-control"
+          id="days"
+          name="days"
+          required />
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label fw-semibold"
+          >Select you price range(per night)</label
+        >
+        <div class="input-group gap-2" id="price">
+          <input
+            type="number"
+            class="form-control"
+            name="fromprice"
+            placeholder="From"
+            required />
+          <input
+            type="number"
+            class="form-control"
+            name="toprice"
+            placeholder="To"
+            required />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputCity" class="form-label">City</label>
+        <input type="text" class="form-control" id="inputCity" name="city" />
+      </div>
+      <div class="mb-3">
+        <label for="inputState" class="form-label">State</label>
+        <select id="inputState" class="form-select" name="state">
+          <option selected>select state</option>
+          <option value="Goa">Goa</option>
+          <option value="Delhi">Delhi</option>
+        </select>
+      </div>
+      <div class="mb-3 text-center">
+        <button type="submit" class="btn btn-primary w-50">Find home</button>
+      </div>
+    </form>
   </div>
 </div>

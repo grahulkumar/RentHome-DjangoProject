@@ -38,8 +38,10 @@ def home_result(request):
     sort_by=request.POST.get('sortby','low')
     if sort_by == "high":
         home=home_data.order_by('-price')  #'-' for descending order
-    else:
+    elif sort_by == "low":
         home=home_data.order_by('price') #ascending order
+    else:
+        home=home_data #default
         
     home_count=home_data.count() #get result count from database
     data['count']=home_count

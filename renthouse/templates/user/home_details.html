@@ -30,16 +30,20 @@
       <span class="fw-bold">Condition: </span
       ><span class="text-success fw-semibold">{{home.condition}}</span>
     </p>
-    <p class="fw-semibold">
+    <p>
+      <span class="fw-bold">Max people: </span
+      ><span class="fw-semibold">{{home.people}}</span>
+    </p>
+    <p>
       <span class="fw-bold">Owner: </span
-      ><span class="text-success fw-semibold">{{name}}</span>
+      ><span class="text-primary fw-semibold">{{name}}</span>
     </p>
     <p>
       <span class="fw-bold">Price: </span
       ><i class="bi bi-currency-rupee"></i
       ><span class="text-danger fw-bold">{{ home.price|multi:days }}</span>
     </p>
-    <a href="/checkout/{{home.id}}" class="btn btn-success w-50 mx-auto fw-semibold">Checkout</a>
+    <a href="/checkout/{{home.id}}&{{days}}" class="btn btn-success w-50 mx-auto fw-semibold">Checkout</a>
   </div>
 </div>
 

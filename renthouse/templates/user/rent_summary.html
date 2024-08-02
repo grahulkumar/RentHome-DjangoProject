@@ -50,7 +50,25 @@
         </tbody>
     </table>
     </div>
-    <a href="/checkout/{{home.id}}&{{days}}" class="btn btn-success d-block w-50 mx-auto my-4 fw-semibold">Checkout</a>
+    <div class="mt-3 p-2">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="datetime" class="form-label fw-semibold">Select date and time to start renting from</label>
+          <div class="row" id="datetime">
+            <div class="col">
+              <input type="date" class="form-control" id="date" name="date" min="{{curdate|date:"Y-m-d"}}" required/>
+            </div>
+            <div class="col">
+              <input type="time" class="form-control" id="time" name="time" required/>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 text-center">
+          <button type="submit" class="btn btn-success w-50">Checkout</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 

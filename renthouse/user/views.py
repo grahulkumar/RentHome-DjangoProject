@@ -39,7 +39,7 @@ def home_result(request):
     #if data is not found according to user but it similar to location
     if not home_data:
         home=HomeDetails.objects.filter(city__icontains=city,state=state)
-        if home=="":
+        if not home:
             data['msg']="No homes found at your location !!"
         else:
             data['msg']="No homes found based on given values but we found on your location !!"
@@ -70,9 +70,39 @@ def home_details(request,id,d):
     #get renter name
     renter_name=get_object_or_404(CustomUser,id=home.rid_id)
     data['name']=renter_name.name
+    
+    #if days is 1
+    if d == 1:
+        data['per']="One Night"
     data['days']=d
     data['home']=home
     return render(request,'user/home_details.html',context=data)
+
+#rent summary
+def rent_summary(request,id,d):
+    #if user is not signed in then redirect to signin page
+    if not request.user.is_authenticated:
+        return redirect("sign-in")
+    data={}
+    #home details from result page
+    home=get_object_or_404(HomeDetails,id=id)
+    
+    #get renter name
+    renter_name=get_object_or_404(CustomUser,id=home.rid_id)
+    data['rname']=renter_name.name
+    
+    #get user name
+    user_id=request.user.id
+    # print(user_id)
+    user_name=get_object_or_404(CustomUser,id=user_id)
+    data['uname']=user_name.name
+    
+    #if days is 1
+    if d == 1:
+        data['per']="One Night"
+    data['days']=d
+    data['home']=home
+    return render(request,'user/rent_summary.html',context=data)
 
 #sign_in page
 def user_signin(request):

@@ -1,0 +1,57 @@
+{% extends "base.html" %} 
+
+{% block title %} Rent Summary {% endblock title %} 
+
+{% block body %}
+
+<!--load custom filters-->
+{% load math_filters %}
+
+<div
+  class="mt-4 p-2 p-md-3 p-lg-4 shadow-sm rounded-2 border mx-2 mx-md-auto mx-lg-auto"
+  style="max-width: 768px">
+  <p class="fs-1 fw-semibold mb-0 text-center text-primary">Rent Summary</p>
+  <hr class="mt-0" />
+  <div>
+    <div class="border rounded-3 p-2">
+    <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <th scope="row">Address</th>
+            <td>:</td>
+            <td>{{home.add}}, {{home.add1}},
+                {{home.pincode}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Location</th>
+            <td>:</td>
+            <td>{{home.city}}, {{home.state}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Renter</th>
+            <td>:</td>
+            <td>{{rname}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Tenant</th>
+            <td>:</td>
+            <td>{{uname}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Rented for</th>
+            <td>:</td>
+            <td>{{days}} days</td>
+          </tr>
+          <tr>
+            <th scope="row">Total Price</th>
+            <td>:</td>
+            <td><i class="bi bi-currency-rupee"></i><span class="text-danger fw-bold">{{ home.price|multi:days }}</span></td>
+          </tr>
+        </tbody>
+    </table>
+    </div>
+    <a href="/checkout/{{home.id}}&{{days}}" class="btn btn-success d-block w-50 mx-auto my-4 fw-semibold">Checkout</a>
+  </div>
+</div>
+
+{% endblock body %}

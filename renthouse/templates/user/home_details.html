@@ -39,11 +39,11 @@
       ><span class="text-primary fw-semibold">{{name}}</span>
     </p>
     <p>
-      <span class="fw-bold">Price: </span
+      <span class="fw-bold">{{per}} Price: </span
       ><i class="bi bi-currency-rupee"></i
       ><span class="text-danger fw-bold">{{ home.price|multi:days }}</span>
     </p>
-    <a href="/checkout/{{home.id}}&{{days}}" class="btn btn-success w-50 mx-auto fw-semibold">Checkout</a>
+    <a href="/rent-summary/{{home.id}}&{{days}}" class="btn btn-success w-50 mx-auto fw-semibold">Rent Now</a>
   </div>
 </div>
 

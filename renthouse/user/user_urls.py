@@ -12,5 +12,6 @@ urlpatterns = [
     path('profile/',views.profile, name="profile"),
     path('result/',views.home_result, name="result"),
     path('home-details/<int:id>&<int:d>',views.home_details, name="details"),
-    
+    path('rent-summary/<int:id>&<int:d>',views.rent_summary, name="rent-summary"),
+
 ]

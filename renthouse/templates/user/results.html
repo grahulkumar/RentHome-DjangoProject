@@ -21,7 +21,10 @@
   <hr class="mt-0" />
   <div class="p-0 pb-4">
     <div class="text-center text-danger fs-2 mb-2 fw-semibold">
-      {{count}} results found !!
+      <!--check if count is present or not-->
+      {% if count %} 
+        {{count}} results found !!
+      {% endif %}
     </div>
     <!--if home not found-->
     <p class="text-primary text-center fs-1 fw-semibold">

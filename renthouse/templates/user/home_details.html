@@ -15,36 +15,49 @@
   <div>
     <img src="{{ home.image.url }}" class="img-thumbnail p-0" alt="..." />
   </div>
-  <div class="card border-0 my-2 my-md-1 px-2">
-    <p class="card-text fw-semibold">
-      <span class="fw-bold">About: </span> {{home.about}}
-    </p>
-    <p class="card-text fw-semibold">
-      <span class="fw-bold">Address: </span> {{home.add}}, {{home.add1}},
-      {{home.pincode}}
-    </p>
-    <p class="fw-semibold">
-      <span class="fw-bold">Location: </span>{{home.city}},{{home.state}}
-    </p>
-    <p class="fw-semibold">
-      <span class="fw-bold">Condition: </span
-      ><span class="text-success fw-semibold">{{home.condition}}</span>
-    </p>
-    <p>
-      <span class="fw-bold">Max people: </span
-      ><span class="fw-semibold">{{home.people}}</span>
-    </p>
-    <p>
-      <span class="fw-bold">Owner: </span
-      ><span class="text-primary fw-semibold">{{name}}</span>
-    </p>
-    <p>
-      <span class="fw-bold">{{per}} Price: </span
-      ><i class="bi bi-currency-rupee"></i
-      ><span class="text-danger fw-bold">{{ home.price|multi:days }}</span>
-    </p>
-    <a href="/rent-summary/{{home.id}}&{{days}}" class="btn btn-success w-50 mx-auto fw-semibold">Rent Now</a>
-  </div>
+  <div class="p-2">
+    <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <th scope="row">About</th>
+            <td>:</td>
+            <td>{{home.about}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Address</th>
+            <td>:</td>
+            <td>{{home.add}}, {{home.add1}},
+                {{home.pincode}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Location</th>
+            <td>:</td>
+            <td>{{home.city}}, {{home.state}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Condition</th>
+            <td>:</td>
+            <td>{{home.condition}}</td>
+          </tr>
+          <tr>
+            <th scope="row">No of People can stay</th>
+            <td>:</td>
+            <td>{{home.people}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Owner</th>
+            <td>:</td>
+            <td>{{name}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Total Price</th>
+            <td>:</td>
+            <td><i class="bi bi-currency-rupee"></i><span class="text-danger fw-bold">{{ home.price|multi:days }}</span></td>
+          </tr>
+        </tbody>
+    </table>
+    </div>
+  <a href="/rent-summary/{{home.id}}&{{days}}" class="btn btn-success d-block w-50 mx-auto my-4 fw-semibold">Rent Now</a>
 </div>
 
 {% endblock body %}

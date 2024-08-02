@@ -16,7 +16,7 @@ class CustomUser(AbstractUser):
         return self.email
     
 #renting home model
-class RentingHomeDetails(models.Model):
+class RentingHome(models.Model):
     start_date=models.DateTimeField( auto_now=False, auto_now_add=False)
     end_date=models.DateTimeField(auto_now=False, auto_now_add=False)
     u=models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)

@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import authenticate,login, logout
-from .models import CustomUser
+from .models import CustomUser,RentingHome
 from renter.models import HomeDetails
 from django.urls import reverse
-from datetime import datetime
+from datetime import datetime,timedelta
 
 # from django.db.models import Q
 
@@ -30,7 +30,7 @@ def home_result(request):
     state = request.GET.get('state')
     
     #filter data
-    home_data=HomeDetails.objects.filter(city__icontains=city,state=state,price__range=(fromprice, toprice)) 
+    home_data=HomeDetails.objects.filter(city__icontains=city,state=state,price__range=(fromprice, toprice),status="not rented") 
     #__range to find between values
     #__icontain ignore case to get value
     
@@ -38,7 +38,7 @@ def home_result(request):
 
     #if data is not found according to user but it similar to location
     if not home_data:
-        home=HomeDetails.objects.filter(city__icontains=city,state=state)
+        home=HomeDetails.objects.filter(city__icontains=city,state=state,status="not rented")
         if not home:
             data['msg']="No homes found at your location !!"
         else:
@@ -108,8 +108,23 @@ def rent_summary(request,id,d):
     
     #get form data
     if(request.method == 'POST'):
-        date=request.POST['date']
-        time = request.POST['time']
+        sdate=request.POST['date']  #date format yyyy-mm-dd
+        stime = request.POST['time'] #time format hh:mm
+        
+        #combine date and time into a single datetime object
+        s_date = f"{sdate} {stime}" #format yyyy-mm-dd hh:mm
+        start_date = datetime.strptime(s_date, '%Y-%m-%d %H:%M')
+        
+        #find end date by adding days in start date
+        end_date = start_date + timedelta(days=d)
+        
+        #save data
+        rentinghome=RentingHome.objects.create(u_id=user_id,start_date=start_date,end_date=end_date)
+        rentinghome.save()
+        
+        #change status in home
+        home.status="rented"
+        home.save()
         
         return redirect('home')
     return render(request,'user/rent_summary.html',context=data)

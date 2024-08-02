@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate,login, logout
 from .models import CustomUser
 from renter.models import HomeDetails
 from django.urls import reverse
-from django.db.models import Q
+# from django.db.models import Q
 
 #user's home page
 def user_home(request):
@@ -30,20 +30,32 @@ def home_result(request):
     state = request.GET.get('state')
     
     #filter data
-    home_data=HomeDetails.objects.filter(Q(city__icontains=city) | Q(state=state),people__gte=people,price__range=(fromprice, toprice)) 
+    home_data=HomeDetails.objects.filter(city__icontains=city,state=state,people__gte=people,price__range=(fromprice, toprice)) 
     #__gte to get minimum value and __range to find between values
     #__icontain ignore case to get value
     
+    home_count=home_data.count() #get result count from database
+
+    #if data is not found according to user but it similar to location
+    if not home_data:
+        home=HomeDetails.objects.filter(city__icontains=city,state=state)
+        if home=="":
+            data['msg']="No homes found at your location !!"
+        else:
+            data['msg']="No homes found based on given values but we found on your location !!"
+            data['per']="One Night"
+    else:
+        home=home_data
+        
     #sorting results
     sort_by=request.POST.get('sortby','low')
     if sort_by == "high":
-        home=home_data.order_by('-price')  #'-' for descending order
+        home=home.order_by('-price')  #'-' for descending order
     elif sort_by == "low":
-        home=home_data.order_by('price') #ascending order
+        home=home.order_by('price') #ascending order
     else:
-        home=home_data #default
-        
-    home_count=home_data.count() #get result count from database
+        home=home #default
+    
     data['count']=home_count
     data['days']=days
     data['homes']=home

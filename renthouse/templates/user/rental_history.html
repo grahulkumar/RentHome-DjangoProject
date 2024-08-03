@@ -28,8 +28,8 @@
                 <i class="bi bi-geo-alt"></i>{{home.p.city}},{{home.p.state}}
               </p>
               <p class="me-2">
-                <span class="fw-bold">Rented date: </span
-                ><span class="fw-semibold">{{home.start_date}} to {{home.end_date}}</span>
+                <span class="fw-bold">Rented on: </span
+                ><span class="fw-semibold"> {{home.start_date | date}} to {{home.end_date | date}}</span>
               </p>
             </div>
           </div>

@@ -134,7 +134,7 @@ def rental_history(request):
     #get user id
     user_id=request.user.id
     data={}
-    renthome_data=RentHomedetails.objects.filter(u_id=user_id).select_related('p') #join Hometails table
+    renthome_data=RentHomedetails.objects.filter(u_id=user_id).select_related('p') #join Homedetails table
     
     data['homes']=renthome_data
     return render(request,'user/rental_history.html',context=data)

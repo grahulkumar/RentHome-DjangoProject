@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import authenticate,login, logout
-from .models import CustomUser,RentingHome
-from renter.models import HomeDetails
+from .models import CustomUser
+from renter.models import HomeDetails,RentHomedetails
 from django.urls import reverse
 from datetime import datetime,timedelta
 
@@ -119,7 +119,7 @@ def rent_summary(request,id,d):
         end_date = start_date + timedelta(days=d)
         
         #save data
-        rentinghome=RentingHome.objects.create(u_id=user_id,start_date=start_date,end_date=end_date)
+        rentinghome=RentHomedetails.objects.create(u_id=user_id,p_id=id,start_date=start_date,end_date=end_date)
         rentinghome.save()
         
         #change status in home

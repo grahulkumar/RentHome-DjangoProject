@@ -17,3 +17,13 @@ class HomeDetails(models.Model):
     
     def __str__(self):
         return self.add
+    
+#renting home model
+class RentHomedetails(models.Model):
+    start_date=models.DateTimeField( auto_now=False, auto_now_add=False)
+    end_date=models.DateTimeField(auto_now=False, auto_now_add=False)
+    u=models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
+    p=models.ForeignKey(HomeDetails, on_delete=models.CASCADE, default=1)
+
+    def __str__(self):
+        return f"Renting starts on {self.start_date} and ends on {self.end_date}"

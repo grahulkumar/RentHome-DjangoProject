@@ -1,0 +1,42 @@
+{% extends "base.html" %} 
+
+{% block title %} Rent History {% endblock title %} 
+
+{% block body %}
+
+<div class="m-2 m-md-3 m-lg-4 p-2 p-md-3 p-lg-4 shadow-sm rounded-2 border">
+    <p class="fs-1 fw-semibold">My Rental History</p>
+    <hr class="mt-0" />
+    <div class="p-0 pb-4">
+      {% if not homes %}
+      <p class="text-primary text-center fs-1 fw-semibold">
+        No rental history available
+      </p>
+      {% endif %}
+      
+      <div class="row">
+        {% for home in homes %}
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card my-2 my-md-1 mx-0 mx-md-1">
+            <img src="{{ home.p.image.url }}" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <p class="fw-semibold">
+                <i class="bi bi-house-door"></i> {{home.p.add}}, {{home.p.add1}},
+                {{home.p.pincode}}
+              </p>
+              <p class="fw-semibold">
+                <i class="bi bi-geo-alt"></i>{{home.p.city}},{{home.p.state}}
+              </p>
+              <p class="me-2">
+                <span class="fw-bold">Rented date: </span
+                ><span class="fw-semibold">{{home.start_date}} to {{home.end_date}}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %} 
+      </div>
+    </div>
+  </div>
+
+{% endblock body %}

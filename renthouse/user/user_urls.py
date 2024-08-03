@@ -13,5 +13,6 @@ urlpatterns = [
     path('result/',views.home_result, name="result"),
     path('home-details/<int:id>&<int:d>',views.home_details, name="details"),
     path('rent-summary/<int:id>&<int:d>',views.rent_summary, name="rent-summary"),
+    path('rental-history/',views.rental_history, name="rental-history"),
 
 ]

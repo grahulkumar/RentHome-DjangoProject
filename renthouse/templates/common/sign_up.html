@@ -4,31 +4,33 @@
 
 {% block sign %}
 
-<div class="mx-2 p-3 mt-4 mx-md-auto shadow border rounded-4 " style="max-width: 768px;">
+<div style="height:90vh">
+  <div class="row align-items-center h-100 p-2 p-md-0">
+
+<div class="col mx-2 p-3 mt-4 mx-md-auto shadow border rounded-4 " style="max-width: 768px;">
     <h1 class="text-center">Sign Up</h1>
     <form method="POST">
       {% csrf_token %}
       <!--name input-->
       <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
+        <label for="name" class="form-label fw-semibold">Name</label>
         <input type="text" class="form-control" id="name" name="name" />
       </div>
 
       <!--email input-->
       <div class="mb-3">
-        <label for="email" class="form-label">Email address</label>
+        <label for="email" class="form-label fw-semibold">Email</label>
         <input
           type="email"
           class="form-control"
           id="email"
           name="email"
-          aria-describedby="emailHelp"
         />
       </div>
 
       <!--password input-->
       <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
+        <label for="password" class="form-label fw-semibold">Password</label>
         <input
           type="password"
           class="form-control"
@@ -39,7 +41,7 @@
 
       <!--confirm password input-->
       <div class="mb-3">
-        <label for="cpassword" class="form-label">confirm Password</label>
+        <label for="cpassword" class="form-label fw-semibold">Confirm Password</label>
         <input
           type="password"
           class="form-control"
@@ -56,12 +58,12 @@
 
     <div class="text-center">
       <span>Already have an account?</span>
-      <a class="text-primary" href="/sign-in"> Sign In</a>
+      <a class="text-primary fw-semibold" href="/sign-in"> Sign In</a>
     </div>
+</div>
 
-    <div class="text-center mt-4">
-      <span class="fw-semibold">by Rahulkumar Gupta</span>
-    </div>
+
+</div>
 </div>
 
 {% endblock sign %}

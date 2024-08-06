@@ -5,26 +5,26 @@
 
 {% block sign %}
 
-
-<div class="mx-2 p-3 mt-4 mx-md-auto shadow border rounded-4 " style="max-width: 768px;">
+<div style="height:90vh">
+<div class="row align-items-center h-100 px-2 px-sm-0">
+<div class="col mx-2 p-3 p-md-4 mt-4 mx-sm-auto shadow border rounded-4 " style="max-width: 576px;">
     <h1 class="mb-4 text-center">Sign In</h1>
     <form method="POST">
       {% csrf_token %}
       <!--email input-->
       <div class="mb-3">
-        <label for="email" class="form-label">Email address</label>
+        <label for="email" class="form-label fw-semibold">Email</label>
         <input
           type="email"
           class="form-control"
           id="email"
           name="email"
-          aria-describedby="emailHelp"
         />
       </div>
 
       <!--password input-->
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
+      <div class="mb-4">
+        <label for="password" class="form-label fw-semibold">Password</label>
         <input
           type="password"
           class="form-control"
@@ -32,22 +32,24 @@
           name="password"
         />
       </div>
-      <div class="text-center">
-        <button type="submit" class="btn btn-primary w-75 my-3">Sign In</button>
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary w-100 mt-2">Sign In</button>
       </div>
     </form>
     <div class="text-center mt-3">
       <span>Don't have an account?</span>
-      <a class="text-info" href="/sign-up"> Sign Up</a>
+      <a class="text-primary fw-semibold" href="/sign-up"> Sign Up</a>
     </div>
     <div class="text-center mt-2">
       <span>Want to rent your home?</span>
-      <a class="text-danger" href="/renter-sign-up">click here</a>
+      <a class="text-danger fw-semibold" href="/renter-sign-up">click here</a>
     </div>
     <div class="text-center mt-4">
       <span class="fw-semibold">by Rahulkumar Gupta</span>
     </div>
 </div>
 
+</div>
+</div>
 
 {% endblock sign %}

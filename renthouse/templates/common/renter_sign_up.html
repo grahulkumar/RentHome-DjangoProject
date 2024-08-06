@@ -5,32 +5,37 @@
 
 {% block sign %}
 
-<div class="mx-2 p-3 mt-4 mx-md-auto shadow border rounded-4 " style="max-width: 768px;">
+<div style="height:90vh">
+  <div class="row align-items-center h-100 p-2 p-md-0">
+
+<div class="col mx-2 p-3  mx-md-auto shadow border rounded-4 " style="max-width: 768px;">
 
     <h1 class="text-center">Create renter account</h1>
+    <div class="alert alert-primary my-4" role="alert">
+      <span class="fw-semibold">Note:</span> This account is used for renter who rent their home and manage those homes
+    </div>
     <form method="POST">
       {% csrf_token %}
       <!--name input-->
       <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
+        <label for="name" class="form-label fw-semibold">Name</label>
         <input type="text" class="form-control" id="name" name="name" />
       </div>
 
       <!--email input-->
       <div class="mb-3">
-        <label for="email" class="form-label">Email address</label>
+        <label for="email" class="form-label fw-semibold">Email</label>
         <input
           type="email"
           class="form-control"
           id="email"
           name="email"
-          aria-describedby="emailHelp"
         />
       </div>
 
       <!--password input-->
       <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
+        <label for="password" class="form-label fw-semibold">Password</label>
         <input
           type="password"
           class="form-control"
@@ -41,7 +46,7 @@
 
       <!--confirm password input-->
       <div class="mb-3">
-        <label for="cpassword" class="form-label">Password</label>
+        <label for="cpassword" class="form-label fw-semibold">Confirm Password</label>
         <input
           type="password"
           class="form-control"
@@ -51,15 +56,18 @@
       </div>
 
       <!--submit button-->
-      <div class="mb-3 text-center">
+      <div class="mt-4 text-center">
         <button type="submit" class="btn btn-success w-75">Sign Up</button>
       </div>
     </form>
 
-    <div class="text-center">
+    <div class="text-center mt-2">
       <span>Already have an account?</span>
       <a class="text-danger" href="/sign-in"> Sign In</a>
     </div>
+</div>
+
+</div>
 </div>
 
 {% endblock sign %}

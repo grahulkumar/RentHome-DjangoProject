@@ -10,13 +10,20 @@
 <div class="m-2 m-md-3 m-lg-4 p-2 p-md-3 p-lg-4 shadow-sm rounded-2 border">
   <div class="d-flex flex-columns justify-content-between">
     <p class="fs-1 fw-semibold">Results</p>
-    <form action="POST" class="my-auto">
-      <select class="form-select" name="sortby">
+    <form id="sortForm" method="POST" class="my-auto">
+      {% csrf_token %}
+      <select id="sortSelect" class="form-select" name="sortby">
         <option value="" disabled selected>sort by</option>
-        <option value="low">price:low</option>
-        <option value="high">price:high</option>
+        <option value="low" >price:low</option>
+        <option value="high" >price:high</option>
       </select>
     </form>
+    <!--script-->
+    <script>
+      document.getElementById('sortSelect').addEventListener('change', function() {
+        document.getElementById('sortForm').submit();
+      });
+    </script>
   </div>
   <hr class="mt-0" />
   <div class="p-0 pb-4">

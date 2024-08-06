@@ -15,7 +15,7 @@ def user_home(request):
         fromprice=request.POST['fromprice']
         toprice=request.POST['toprice']
         days = request.POST['days']
-        url = reverse('result') + f'?days={days}&fromprice={fromprice}&toprice={toprice}&city={city}&state={state}'
+        url = reverse('result') + f'?days={days}&fromprice={fromprice}&toprice={toprice}&city={city}&state={state}&sortby=default'
         return redirect(url)
     return render(request,'user/user_home.html')
 
@@ -28,7 +28,8 @@ def home_result(request):
     toprice = request.GET.get('toprice')
     city = request.GET.get('city')
     state = request.GET.get('state')
-    
+    sortby = request.GET.get('sortby')
+     
     #filter data
     home_data=HomeDetails.objects.filter(city__icontains=city,state=state,price__range=(fromprice, toprice),status="not rented") 
     #__range to find between values
@@ -46,19 +47,25 @@ def home_result(request):
             data['per']="One Night"
     else:
         home=home_data
-        
-    #sorting results
-    sort_by=request.POST.get('sortby','low')
-    if sort_by == "high":
+ 
+    #sorting by price
+    if sortby == 'high':
         home=home.order_by('-price')  #'-' for descending order
-    elif sort_by == "low":
-        home=home.order_by('price') #ascending order
+    elif sortby == 'low':
+        home=home.order_by('price')
     else:
-        home=home #default
-    
+        home=home
+
+    #send data from sortby form to get sorted results
+    if(request.method == 'POST'):
+        sort_by=request.POST['sortby']
+        url = reverse('result') + f'?days={days}&fromprice={fromprice}&toprice={toprice}&city={city}&state={state}&sortby={sort_by}'
+        return redirect(url)
+
     data['count']=home_count
     data['days']=days
     data['homes']=home
+    data['sort']=sortby
     return render(request,'user/results.html',context=data)
 
 #home-details

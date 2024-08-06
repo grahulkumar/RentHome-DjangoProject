@@ -32,8 +32,7 @@ def add_home(request):
             print("All fields are required")
         else:
             #get renter id
-            user=request.get.id
-            user_id=CustomUser.objects.get(id=user)
+            user_id=request.user.id
             addHome=HomeDetails.objects.create(image=image_file,add=add,add1=add1,state=state,city=city,pincode=pincode,about=about,condition=condition,price=price, people=people,rid_id=user_id)
             addHome.save()
             print("renter saved successfully")

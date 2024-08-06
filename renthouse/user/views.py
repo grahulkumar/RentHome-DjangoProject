@@ -150,17 +150,17 @@ def rental_history(request):
 #auth
 #sign_in page
 def user_signin(request):
+    data={}
     if(request.method == 'POST'):       
         email=request.POST.get('email')
         password=request.POST.get('password')
         
         if(email=="" or password==""):
-            print("all fields required")
+            data['msg']="all fields required"
         else:
             user_auth=authenticate(request,email=email,password=password)
             if(user_auth is None):
-                print("user does not exist")
-                return render(request, 'common/sign_in.html')
+                data['msg']="Enter correct email and password"
             else:
                 login(request,user_auth)
                 if hasattr(user_auth, 'role'):  # Ensure role attribute exists
@@ -170,41 +170,60 @@ def user_signin(request):
                         return redirect("home")
                 else:
                     return redirect("sign-in")
-    return render(request,'common/sign_in.html')
+    return render(request,'common/sign_in.html',context=data)
 
 #user sign_up page
 def user_signup(request):
+    data={}
     if(request.method == 'POST'):
         name=request.POST['name']
         email=request.POST['email']
         password=request.POST['password']
         cpassword=request.POST['cpassword']
+
+        #check email already present on database or not
+        check_email=get_object_or_404(CustomUser,email=email)
+
+
         if(name=="" or email=="" or password=="" or cpassword==""):
-            print("all fields required")
+            data['msg']="all fields required"
+        elif(password != cpassword):
+            data['msg']="Password doesn't match"
+        elif(email == check_email.email):
+            data['msg']="Email already exist"
         else:
             user=CustomUser.objects.create(name=name,email=email,role="User")
             user.set_password(password)
             user.save()
-            print("user saved successfully")
+            # print("user saved successfully")
             return redirect("sign-in")
-    return render(request,'common/sign_up.html')
+    return render(request,'common/sign_up.html',context=data)
 
 #renter sign_up page
 def renter_signup(request):
+    data={}
     if(request.method == 'POST'):
         rname=request.POST['name']
         remail=request.POST['email']
         rpassword=request.POST['password']
         rcpassword=request.POST['cpassword']
+
+        #check email already present on database or not
+        check_email=get_object_or_404(CustomUser,email=remail)
+
         if(rname=="" or remail=="" or rpassword=="" or rcpassword==""):
-            print("all fields required")
+            data['msg']="all fields required"
+        elif(rpassword != rcpassword):
+            data['msg']="Password doesn't match"
+        elif(remail == check_email.email):
+            data['msg']="Email already exist"
         else:
             renter=CustomUser.objects.create(name=rname,email=remail,role="Renter")
             renter.set_password(rpassword)
             renter.save()
-            print("renter saved successfully")
+            # print("renter saved successfully")
             return redirect("sign-in")
-    return render(request,'common/renter_sign_up.html')
+    return render(request,'common/renter_sign_up.html',context=data)
 
 #user_logout
 def user_logout(request):

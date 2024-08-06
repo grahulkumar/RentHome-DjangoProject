@@ -1,8 +1,11 @@
-{% extends "base.html" %} {% block sign %}
+{% extends "base.html" %} 
 
-<div class="d-flex justify-content-center align-items-center">
-  <div class="w-75">
-    <h1>Sign Up Page</h1>
+{% block title %} Sign Up {% endblock title %} 
+
+{% block sign %}
+
+<div class="mx-2 p-3 mt-4 mx-md-auto shadow border rounded-4 " style="max-width: 768px;">
+    <h1 class="text-center">Sign Up</h1>
     <form method="POST">
       {% csrf_token %}
       <!--name input-->
@@ -46,16 +49,19 @@
       </div>
 
       <!--submit button-->
-      <div class="mb-3">
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+      <div class="mb-3 text-center">
+        <button type="submit" class="btn btn-primary w-75">Sign Up</button>
       </div>
     </form>
 
-    <div>
+    <div class="text-center">
       <span>Already have an account?</span>
-      <a class="text-danger" href="/sign-in"> Sign In</a>
+      <a class="text-primary" href="/sign-in"> Sign In</a>
     </div>
-  </div>
+
+    <div class="text-center mt-4">
+      <span class="fw-semibold">by Rahulkumar Gupta</span>
+    </div>
 </div>
 
 {% endblock sign %}

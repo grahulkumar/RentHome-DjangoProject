@@ -1,11 +1,15 @@
-{% extends "base.html" %} {% block sign %}
+{% extends "base.html" %} 
 
-<div class="d-flex justify-content-center align-items-center">
-  <div class="w-75">
-    <h1>Sign In Page</h1>
+{% block title %} Sign In {% endblock title %} 
+
+
+{% block sign %}
+
+
+<div class="mx-2 p-3 mt-4 mx-md-auto shadow border rounded-4 " style="max-width: 768px;">
+    <h1 class="mb-4 text-center">Sign In</h1>
     <form method="POST">
       {% csrf_token %}
-
       <!--email input-->
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
@@ -28,19 +32,22 @@
           name="password"
         />
       </div>
-
-      <!--submit button-->
-      <button type="submit" class="btn btn-primary">Sign In</button>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary w-75 my-3">Sign In</button>
+      </div>
     </form>
-    <div class="text-center">
+    <div class="text-center mt-3">
       <span>Don't have an account?</span>
-      <a class="text-danger" href="/sign-up"> Sign Up</a>
+      <a class="text-info" href="/sign-up"> Sign Up</a>
     </div>
-    <div class="text-center">
+    <div class="text-center mt-2">
       <span>Want to rent your home?</span>
       <a class="text-danger" href="/renter-sign-up">click here</a>
     </div>
-  </div>
+    <div class="text-center mt-4">
+      <span class="fw-semibold">by Rahulkumar Gupta</span>
+    </div>
 </div>
+
 
 {% endblock sign %}

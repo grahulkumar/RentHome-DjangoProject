@@ -12,10 +12,11 @@
     <p class="fs-1 fw-semibold">Results</p>
     <form id="sortForm" method="POST" class="my-auto">
       {% csrf_token %}
+      
       <select id="sortSelect" class="form-select" name="sortby">
-        <option value="" disabled selected>sort by</option>
-        <option value="low" >price:low</option>
-        <option value="high" >price:high</option>
+        <option value="" disabled {% if sort == "default" %}selected{% endif %}>sort by</option>
+        <option value="low" {% if sort == "low" %}selected{% endif %} >price:low</option>
+        <option value="high" {% if sort == "high" %}selected{% endif %}>price:high</option>
       </select>
     </form>
     <!--script-->

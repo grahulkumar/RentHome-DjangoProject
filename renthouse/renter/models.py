@@ -19,9 +19,10 @@ class HomeDetails(models.Model):
         return self.add
     
 #renting home model
-class RentHomedetails(models.Model):
+class Rentdetails(models.Model):
     start_date=models.DateTimeField( auto_now=False, auto_now_add=False)
     end_date=models.DateTimeField(auto_now=False, auto_now_add=False)
+    total_price=models.DecimalField( max_digits=10, decimal_places=2,default=1)
     u=models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
     p=models.ForeignKey(HomeDetails, on_delete=models.CASCADE, default=1)
 

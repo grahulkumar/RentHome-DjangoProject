@@ -15,4 +15,8 @@ urlpatterns = [
     path('rent-summary/<int:id>&<int:d>',views.rent_summary, name="rent-summary"),
     path('rental-history/',views.rental_history, name="rental-history"),
 
+    path('payment/', views.payment, name='payment'),
+    path('success/', views.success, name='success'),
+    path('cancel/', views.cancel, name='cancel'),
+
 ]

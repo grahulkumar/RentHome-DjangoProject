@@ -2,25 +2,23 @@
 
 {% block title %} Rent Summary {% endblock title %} 
 
-{% block body %}
 
-<!--load custom filters-->
-{% load math_filters %}
+{% block body %}
 
 <div
   class="mt-4 p-2 p-md-3 p-lg-4 shadow-sm rounded-2 border mx-2 mx-md-auto mx-lg-auto"
-  style="max-width: 768px">
+  style="max-width: 768px"
+>
   <p class="fs-1 fw-semibold mb-0 text-center text-primary">Rent Summary</p>
   <hr class="mt-0" />
   <div>
     <div class="border rounded-3 p-2">
-    <table class="table table-borderless">
+      <table class="table table-borderless">
         <tbody>
           <tr>
             <th scope="row">Address</th>
             <td>:</td>
-            <td>{{home.add}}, {{home.add1}},
-                {{home.pincode}}</td>
+            <td>{{home.add}}, {{home.add1}}, {{home.pincode}}</td>
           </tr>
           <tr>
             <th scope="row">Location</th>
@@ -45,27 +43,44 @@
           <tr>
             <th scope="row">Total Price</th>
             <td>:</td>
-            <td><i class="bi bi-currency-rupee"></i><span class="text-danger fw-bold">{{ home.price|multi:days }}</span></td>
+            <td>
+              <i class="bi bi-currency-rupee"></i
+              ><span class="text-danger fw-bold">{{ total }}</span>
+            </td>
           </tr>
         </tbody>
-    </table>
+      </table>
     </div>
     <div class="mt-3 p-2">
       <form method="POST">
         {% csrf_token %}
         <div class="mb-3">
-          <label for="datetime" class="form-label fw-semibold">Select date and time to start renting from</label>
+          <label for="datetime" class="form-label fw-semibold"
+            >Select date and time to start renting from</label
+          >
           <div class="row" id="datetime">
             <div class="col">
-              <input type="date" class="form-control" id="date" name="date" min="{{curdate|date:"Y-m-d"}}" required/>
+              <input type="date" class="form-control" id="date" name="date"
+              min="{{curdate|date:"Y-m-d"}}" required/>
             </div>
             <div class="col">
-              <input type="time" class="form-control" id="time" name="time" required/>
+              <input
+                type="time"
+                class="form-control"
+                id="time"
+                name="time"
+                required
+              />
             </div>
           </div>
         </div>
         <div class="mb-3 text-center">
-          <button type="submit" class="btn btn-success w-50">Checkout</button>
+          <button
+            type="submit"
+            class="btn btn-success w-50"
+          >
+            Checkout
+          </button>
         </div>
       </form>
     </div>

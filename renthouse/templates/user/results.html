@@ -19,19 +19,21 @@
         <option value="high" {% if sort == "high" %}selected{% endif %}>price:high</option>
       </select>
     </form>
-    <!--script-->
+
+    <!--script for select tag to submit-->
     <script>
       document.getElementById('sortSelect').addEventListener('change', function() {
         document.getElementById('sortForm').submit();
       });
     </script>
+
   </div>
   <hr class="mt-0" />
   <div class="p-0 pb-4">
     <div class="text-center text-danger fs-2 mb-2 fw-semibold">
       <!--check if count is present or not-->
       {% if count %} 
-        {{count}} results found !!
+        {{count}} Results found !!
       {% endif %}
     </div>
     <!--if home not found-->
@@ -40,8 +42,8 @@
     </p>
     <div class="row">
       {% for home in homes %}
-      <div class="col-12 col-md-6 col-lg-3">
-        <div class="card my-2 my-md-1 mx-0 mx-md-1">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card my-2 mx-0 mx-md-1">
           <img src="{{ home.image.url }}" class="card-img-top" alt="..." />
           <div class="card-body">
             <p class="fw-semibold">
@@ -61,9 +63,14 @@
                 ><span class="text-info fw-semibold">{{home.people}}</span>
               </p>
             </div>
+            <p>
+              <span class="fw-bold">Price: </span
+              ><span class="text-primary fw-semibold"><i class="bi bi-currency-rupee"></i
+                >{{home.price}} (1 day)</span>
+            </p>
             <div class="d-flex justify-content-between">
               <p>
-                <span class="fw-bold">{{per}} Price: </span
+                <span class="fw-bold">{{per}}Total Price: </span
                 ><i class="bi bi-currency-rupee"></i
                 ><span class="text-danger fw-bold"
                   >{{ home.price|multi:days }} </span>({{days}}days)

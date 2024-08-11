@@ -3,37 +3,27 @@
 {% block title %} Payment {% endblock title %} 
 
 
-{% block body %}
+{% block sign %}
 
 <div
-  class="mt-4 p-2 p-md-3 p-lg-4 shadow-sm rounded-2 border mx-2 mx-md-auto mx-lg-auto"
+  class="my-4 p-2 p-md-3 p-lg-4 shadow-sm rounded-2 border mx-2 mx-md-auto mx-lg-auto"
   style="max-width: 768px"
 >
   <p class="fs-1 fw-semibold mb-0 text-center text-primary">Payment</p>
   <hr class="mt-0" />
   <div>
-    <div class="border rounded-3 p-2">
-      <table class="table table-borderless">
+      <table class="table table-borderless fs-2">
         <tbody>
-          <tr>
-            <th scope="row">Start date:</th>
-            <td>:</td>
-            <td>{{start_date}}</td>
-          </tr>
-          <tr>
-            <th scope="row">End date:</th>
-            <td>:</td>
-            <td>{{end_date}}</td>
-          </tr>
           <tr>
             <th scope="row">Total price:</th>
             <td>:</td>
-            <td>{{total_price}}</td>
+            <td class="text-center fw-semibold"><i class="bi bi-currency-rupee"></i> {{total_price}}</td>
           </tr>
         </tbody>
       </table>
-      <button class="btn btn-success w-75" >Pay Now</button>
-  </div>
+      <div class="text-center">
+        <button class="btn btn-success w-75" >Pay Now</button>
+      </div>
 </div>
 </div>
-{% endblock body %}
+{% endblock sign %}

@@ -16,6 +16,11 @@
       <table class="table table-borderless">
         <tbody>
           <tr>
+            <th scope="row">Name</th>
+            <td>:</td>
+            <td>{{uname}}</td>
+          </tr>
+          <tr>
             <th scope="row">Address</th>
             <td>:</td>
             <td>{{home.add}}, {{home.add1}}, {{home.pincode}}</td>
@@ -26,22 +31,17 @@
             <td>{{home.city}}, {{home.state}}</td>
           </tr>
           <tr>
-            <th scope="row">Owner</th>
+            <th scope="row">Property Owner</th>
             <td>:</td>
             <td>{{rname}}</td>
           </tr>
           <tr>
-            <th scope="row">Tenant</th>
-            <td>:</td>
-            <td>{{uname}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Rented for</th>
+            <th scope="row">Rented period</th>
             <td>:</td>
             <td>{{days}} days</td>
           </tr>
           <tr>
-            <th scope="row">Total Price</th>
+            <th scope="row">Total Price ( {{days}} days)</th>
             <td>:</td>
             <td>
               <i class="bi bi-currency-rupee"></i

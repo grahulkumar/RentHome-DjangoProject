@@ -133,12 +133,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #register custom user model
 AUTH_USER_MODEL = "user.CustomUser"
 
-#custom auth using email
-# AUTHENTICATION_BACKENDS = [
-#     'user.backends.EmailBackend',
-# ]
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+#stripe
+STRIPE_TEST_PUBLIC_KEY = 'your-publishable-key'
+STRIPE_TEST_SECRET_KEY = 'your-secret-key'

@@ -155,7 +155,6 @@ def rent_summary(request, id, d):
         # find end date by adding days in start date
         end_date = start_date + timedelta(days=d)
 
-
         url=( reverse('payment') + f'?u_id={user_id}&p_id={id}&start_date={start_date}&end_date={end_date}&total_price={total_price}')
         return redirect(url)
     return render(request, "user/rent_summary.html", context=data)
@@ -298,4 +297,10 @@ def user_logout(request):
 
 # User profile section
 def profile(request):
-    return render(request, "common/profile.html")
+    # get user id
+    user_id = request.user.id
+    data = {}
+    user_data=CustomUser.objects.get(id=user_id)
+    data['name']=user_data.name
+    data['email']=user_data.email
+    return render(request, "common/profile.html",context=data)

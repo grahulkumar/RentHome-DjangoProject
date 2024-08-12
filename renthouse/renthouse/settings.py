@@ -136,7 +136,3 @@ AUTH_USER_MODEL = "user.CustomUser"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
-#stripe
-STRIPE_TEST_PUBLIC_KEY = 'your-publishable-key'
-STRIPE_TEST_SECRET_KEY = 'your-secret-key'

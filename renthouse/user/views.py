@@ -5,12 +5,7 @@ from renter.models import HomeDetails, Rentdetails
 from django.urls import reverse
 from datetime import datetime, timedelta
 from decimal import Decimal
-from django.http import JsonResponse
 
-
-# stripe
-import stripe
-from django.conf import settings
 
 # from django.db.models import Q
 
@@ -112,6 +107,8 @@ def home_details(request, id, d):
 
 
 # rent summary
+import razorpay
+
 def rent_summary(request, id, d):
     # if user is not signed in then redirect to signin page
     if not request.user.is_authenticated:
@@ -167,8 +164,46 @@ def payment(request):
     start_date = request.GET.get("start_date")
     end_date = request.GET.get("end_date")
     total_price = request.GET.get("total_price")
-    data={'u_id':u_id,'p_id':p_id,'start_date':start_date,'end_date':end_date,'total_price':total_price}
+    price=int(float(total_price))
+    data1={'u_id':u_id,'p_id':p_id,'start_date':start_date,'end_date':end_date,'total_price':total_price}
     
+    
+    #implementing razor pay
+    client = razorpay.Client(auth=("rzp_test_XRjX6qJ69ajxxs", "s56837vKNGmoW2BiQkQbC3sH"))
+    data = { "amount": price, "currency": "INR", "receipt": "order_rcptid_11" }
+    payment = client.order.create(data=data)
+   
+    
+    #save data to session for further use
+    
+
+    # #Save data to the database
+    # rentinghome=Rentdetails.objects.create(
+    #         u_id=u_id,
+    #         p_id=p_id,
+    #         start_date=start_date,
+    #         end_date=end_date,
+    #         total_price=total_price,
+    #     )
+    # rentinghome.save()
+
+    # # home details from result page
+    # home = get_object_or_404(HomeDetails, id=p_id)
+    # #change status in home
+    # home.status="rented"
+    # home.save()
+    
+    return render(request,'user/payment.html',context=data1)
+
+# success and cancel payment
+def success(request):
+    # Retrieve data from payment
+    u_id = request.GET.get("u_id")
+    p_id = request.GET.get("p_id")
+    start_date = request.GET.get("start_date")
+    end_date = request.GET.get("end_date")
+    total_price = request.GET.get("total_price")
+  
     #Save data to the database
     rentinghome=Rentdetails.objects.create(
             u_id=u_id,
@@ -184,12 +219,8 @@ def payment(request):
     #change status in home
     home.status="rented"
     home.save()
-    
-    return render(request,'user/payment.html',context=data)
 
-# success and cancel payment
-def success(request):
-    return render(request, "success.html")
+    return render(request, "user/success.html")
 
 
 def cancel(request):
@@ -197,7 +228,7 @@ def cancel(request):
 
 
 # rent history
-def rental_history(request):
+def rental_status(request):
     # get user id
     user_id = request.user.id
     data = {}
@@ -206,7 +237,7 @@ def rental_history(request):
     )  # join Homedetails table
 
     data["homes"] = renthome_data
-    return render(request, "user/rental_history.html", context=data)
+    return render(request, "user/rental_status.html", context=data)
 
 
 # auth

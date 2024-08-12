@@ -2,11 +2,22 @@
 
 {% block title %} Success payment {% endblock title %} 
 
-{% block body %}
+{% block sign %}
 
-<div>
-    success
+<div  class="bg-success text-white fs-2 text-center mt-5 my-4 p-4  shadow-sm rounded-2 border mx-2 mx-md-auto mx-lg-auto"
+style="max-width: 768px">
+    You rented home Successfully <a href="{% url 'home' %}" class="text-white d-block" >Go to Home Page</a>
 </div>
 
+<!-- auto redirect in 10 second-->
+<script>
+    function redirectToAnotherPage() {
+        setTimeout(function() {
+            window.location.href = "{% url 'home' %}";
+        }, 10000); // 10000 milliseconds = 10 seconds
+    }
 
-{% endblock body %}
+    window.onload = redirectToAnotherPage;
+</script>
+
+{% endblock sign %}
